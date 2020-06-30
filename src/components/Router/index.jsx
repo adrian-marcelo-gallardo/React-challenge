@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Layout from '../Layout';
 
 const Home = () => (
   <div>Home</div>
@@ -11,10 +12,12 @@ const Favorites = () => (
 
 const Router = () => (
   <BrowserRouter>
-    <Switch>
-      <Route component={Favorites} path="/favorites" exact />
-      <Route component={Home} path="/" />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route component={Favorites} path="/favorites" exact />
+        <Route component={Home} path="/" />
+      </Switch>
+    </Layout>
   </BrowserRouter>
 );
 
