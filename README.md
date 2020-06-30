@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React Challenge
 
-## Available Scripts
+The output of this challenge is to create a Youtube Client. You will be applying the concepts that you learned along the course.
 
-In the project directory, you can run:
+Joins us via [Slack](// TODO slack channel)!
 
-### `yarn start`
+#### What we are expecting from you is:
+- Use [Sign-in API](https://developers.google.com/identity/sign-in/web/sign-in)
+- Use [Youtube API](https://developers.google.com/youtube/v3)
+- Use enzyme and jest for testing
+- Use React Router and React 16 (already included in the boilerplate code)
+- Use Hooks learned in the course for your application's state management 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Delivery
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### First Delivery (due // TODO)
+- Login
+  - Connect the applicaction with google API.
 
-### `yarn test`
+- Home View
+  - It displays the trending videos using Youtube Trending API.
+  - It has a search bar, which uses Youtube Search API.
+  - Each video may be saved as favorite in the Context state, and also can be removed from the same call to action.
+  - Each video should display if it is already marked as favorite.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Your Favorites List View
+  - It displays the videos that you previously selected, which comes from Context.
+  - Each video may be removed from favorite in Context.
 
-### `yarn build`
+At this point, don't worry about styling nor tests, you will be focused on those in the next delivery.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Second Delivery (due // TODO)
+- Style your views using styled component, css or what ever is easier for you.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- Unit Testing
+  - Create tests for your application
+  - Coverage must be at least 70%
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Restrictions
+- Don’t include extra dependencies (lodash, ramda).
+- Don’t include css loaders or css libraries (bootstrap, bulma, semantic).
+- Don’t use inline styles.
+- Minimize the use of React Components internal state.
+- Application must preserve the state for favorites. This means that if your refresh the page, it must display the ones that you previously selected.
+- Constantly commit your code.
 
-### `yarn eject`
+## Code Review
+- Fork this project.
+- You must open a pull request (PR) against this repo (master branch) for each of your deliveries.
+- If you send a commit after the deadline we won't take it into account for the evaluation.
+- All feedback will be given via your PR.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## TL;DR
+1. Use Youtube API
+2. Home List View
+  - Trending API
+  - Search API
+3. Favorite List View
+  - Context State List
+5. Unit Testing
+  - Coverage 70%
