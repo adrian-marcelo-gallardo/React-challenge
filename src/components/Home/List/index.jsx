@@ -36,9 +36,8 @@ const List = () => {
             onClick={() => handleNewVideo(id.videoId)}
           >
             <img
+              className={classes.img}
               src={snippet?.thumbnails?.default?.url}
-              width={snippet?.thumbnails?.default?.width}
-              height={snippet?.thumbnails?.default?.height}
               alt="image"
             />
             <div className={classes.details}>

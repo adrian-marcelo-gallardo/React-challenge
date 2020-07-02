@@ -17,6 +17,10 @@ export default makeStyles(() => ({
       cursor: 'pointer',
     },
   },
+  img: {
+    width: 120,
+    height: 90,
+  },
   details: {
     height: '100%',
     flexGrow: 1,
