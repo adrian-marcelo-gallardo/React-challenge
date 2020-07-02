@@ -4,6 +4,14 @@ export default makeStyles(() => ({
   root: {
     width: '30%',
     height: '100%',
-    backgroundColor: 'red',
+    overflow: 'scroll',
+  },
+  listItem: {
+    widht: '100%',
+    height: '100px',
+
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 }));
