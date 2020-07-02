@@ -26,5 +26,5 @@ export default () => {
     }
 
     window.gapi.load('client:auth2', initGoogle);
-  }, []);
+  }, [dispatch]);
 };
