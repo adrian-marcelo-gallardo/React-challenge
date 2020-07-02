@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Navbar from '../Navbar';
-import Menu from '../Menu';
+import Drawer from '../Drawer';
 import useStyles from './styles';
 
 export default function Layout({ children }) {
@@ -13,7 +13,7 @@ export default function Layout({ children }) {
   return (
     <div className={classes.grow}>
       <Navbar toggleDrawer={setOpenDrawer} />
-      <Menu
+      <Drawer
         open={openDrawer}
         toggleDrawer={setOpenDrawer}
       />

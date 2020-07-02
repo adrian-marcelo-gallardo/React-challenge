@@ -8,10 +8,25 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
+import { useGeneralContext } from '../../context/General';
+import { setValue } from '../../state/actions';
+
 import useStyles from './styles';
 
 const Navbar = ({ toggleDrawer }) => {
   const classes = useStyles();
+
+  const [{ searchTerm }, dispatch] = useGeneralContext();
+
+  const handleOnChange = (e) => {
+    const { value } = e.target;
+
+    const action = setValue({
+      key: 'searchTerm',
+      value,
+    });
+    dispatch(action);
+  };
 
   return (
     <AppBar position="static">
@@ -36,6 +51,8 @@ const Navbar = ({ toggleDrawer }) => {
               input: classes.inputInput,
             }}
             inputProps={{ 'aria-label': 'search' }}
+            onChange={handleOnChange}
+            value={searchTerm}
           />
         </div>
         <div className={classes.grow} />

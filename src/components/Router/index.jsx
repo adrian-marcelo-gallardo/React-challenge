@@ -1,10 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Layout from '../Layout';
 
-const Home = () => (
-  <div>Home</div>
-);
+import { Provider as GeneralContext } from '../../context/General';
+import Layout from '../Layout';
+import Home from '../Home';
 
 const Favorites = () => (
   <div>Favorites</div>
@@ -12,12 +11,14 @@ const Favorites = () => (
 
 const Router = () => (
   <BrowserRouter>
-    <Layout>
-      <Switch>
-        <Route component={Favorites} path="/favorites" exact />
-        <Route component={Home} path="/" />
-      </Switch>
-    </Layout>
+    <GeneralContext>
+      <Layout>
+        <Switch>
+          <Route component={Favorites} path="/favorites" exact />
+          <Route component={Home} path="/" />
+        </Switch>
+      </Layout>
+    </GeneralContext>
   </BrowserRouter>
 );
 
