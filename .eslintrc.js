@@ -1,12 +1,13 @@
 module.exports = {
   env: {
     browser: true,
-    es2020: true,
+    es6: true,
   },
   extends: [
     'plugin:react/recommended',
     'airbnb',
   ],
+  parser: "babel-eslint",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -18,5 +19,6 @@ module.exports = {
     'react',
   ],
   rules: {
+    "class-methods-use-this": 0
   },
 };
