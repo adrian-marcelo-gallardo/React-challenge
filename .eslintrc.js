@@ -19,6 +19,9 @@ module.exports = {
     'react',
   ],
   rules: {
-    "class-methods-use-this": 0
+    "class-methods-use-this": 0,
+    "react/forbid-prop-types": 0, 
+    "react/jsx-props-no-spreading": 0,
+    "react/require-default-props": 0
   },
 };
