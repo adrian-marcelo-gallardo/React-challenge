@@ -15,6 +15,8 @@ export default (term) => {
           q: term,
         });
         const { items } = result;
+
+        console.log(items);
         setResponse(items);
       } catch (e) {
         console.log(e);
