@@ -15,15 +15,14 @@ export default (term) => {
           q: term,
         });
         const { items } = result;
+
         setResponse(items);
       } catch (e) {
         console.log(e);
       }
     }
 
-    if (window?.gapi?.client?.youtube) {
-      searchTerm();
-    }
+    searchTerm();
   }, [term]);
 
   return response;

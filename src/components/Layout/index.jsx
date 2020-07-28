@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import useGapi from '../../hooks/useGapi';
 import Navbar from '../Navbar';
 import Drawer from '../Drawer';
 import useStyles from './styles';
@@ -10,10 +8,14 @@ import { useGeneralContext } from '../../context/General';
 import { setValue } from '../../state/actions';
 
 export default function Layout({ children }) {
-  useGapi();
   const {
-    loggedIn, login, logout, user, loading,
+    loggedIn,
+    login,
+    logout,
+    user,
+    loading,
   } = useAuth();
+
   const [, dispatch] = useGeneralContext();
   const [openDrawer, setOpenDrawer] = useState(false);
   const classes = useStyles();
@@ -27,7 +29,11 @@ export default function Layout({ children }) {
   }, [user, dispatch]);
 
   const navBarProps = {
-    isLoggedIn: loggedIn, onLogIn: login, onLogOut: logout, user, loading,
+    isLoggedIn: loggedIn,
+    onLogIn: login,
+    onLogOut: logout,
+    user,
+    loading,
   };
 
   return (

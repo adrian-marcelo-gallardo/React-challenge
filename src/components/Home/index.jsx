@@ -1,24 +1,40 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-
+import { useHistory } from 'react-router-dom';
 import { useGeneralContext } from '../../context/General';
-import List from './List';
+import useYoutubeSearch from '../../hooks/useYoutubeSearch';
+import { setValues } from '../../state/actions';
+import Card from '../Card';
 import useStyles from './styles';
 
 const Home = () => {
   const classes = useStyles();
 
-  const [{ videoId }] = useGeneralContext();
+  const [{ searchTerm }, dispatch] = useGeneralContext();
+
+  const { push } = useHistory();
+  const list = useYoutubeSearch(searchTerm);
+
+  function handleOnClick(videoData) {
+    const { videoId } = videoData;
+    push(`/${videoId}`);
+
+    const action = setValues(videoData);
+    dispatch(action);
+  }
 
   return (
     <div className={classes.root}>
-      <iframe
-        title="video"
-        width="70%"
-        height="500px"
-        src={`https://www.youtube.com/embed/${videoId}`}
-      />
-      <List />
+      {list.map(({ etag, id, snippet }) => (id.videoId ? (
+        <Card
+          key={etag}
+          img={snippet?.thumbnails?.medium?.url || ''}
+          title={snippet?.title || ''}
+          description={snippet?.description || ''}
+          publishTime={snippet?.publishTime || ''}
+          videoId={id.videoId}
+          onClick={handleOnClick}
+        />
+      ) : null))}
     </div>
   );
 };
