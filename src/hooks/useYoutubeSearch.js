@@ -16,16 +16,13 @@ export default (term) => {
         });
         const { items } = result;
 
-        console.log(items);
         setResponse(items);
       } catch (e) {
         console.log(e);
       }
     }
 
-    if (window?.gapi?.client?.youtube) {
-      searchTerm();
-    }
+    searchTerm();
   }, [term]);
 
   return response;

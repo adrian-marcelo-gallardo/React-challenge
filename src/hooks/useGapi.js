@@ -9,11 +9,11 @@ export default () => {
   useEffect(() => {
     async function initGoogle() {
       try {
-        const response = await window.gapi.auth2.init({
+        await window.gapi.auth2.init({
           client_id: process.env.REACT_APP_CLIENT_ID,
         });
 
-        console.log({ response });
+        await window.gapi.client.setApiKey(process.env.REACT_APP_API_KEY);
 
         await window.gapi.client.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest');
 

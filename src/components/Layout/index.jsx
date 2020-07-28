@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
-import useGapi from '../../hooks/useGapi';
 import Navbar from '../Navbar';
 import Drawer from '../Drawer';
 import useStyles from './styles';
 
 export default function Layout({ children }) {
   const [openDrawer, setOpenDrawer] = useState(false);
-
-  useGapi();
 
   const classes = useStyles();
 
