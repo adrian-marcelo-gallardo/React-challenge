@@ -13,23 +13,26 @@ Joins us via [Slack](// TODO slack channel)!
 
 ## Delivery
 
-### First Delivery (due // TODO)
+### First Delivery (due September 7th 23:59PM)
 - Login
   - Connect the applicaction with google API.
 
 - Home View
-  - It displays the trending videos using Youtube Trending API.
+  - It displays the trending videos using Youtube API.
+  - It has a search bar, which uses Youtube API.
+
+- Video Details View
+  - It displays the video selected and its information.
   - It has a search bar, which uses Youtube Search API.
-  - Each video may be saved as favorite in the Context state, and also can be removed from the same call to action.
-  - Each video should display if it is already marked as favorite.
+  - Each video may be saved as favorite Youtube API, and also can be removed from the same call to action.
 
 - Your Favorites List View
-  - It displays the videos that you previously selected, which comes from Context.
-  - Each video may be removed from favorite in Context.
+  - It displays the videos that you previously selected, which comes from Youtube API.
+  - Each video may be removed from favorites using Youtube API.
 
 At this point, don't worry about styling nor tests, you will be focused on those in the next delivery.
 
-### Second Delivery (due // TODO)
+### Second Delivery (due September 11th 23:59PM)
 - Style your views using styled component, css or what ever is easier for you.
 
 - Unit Testing
@@ -38,10 +41,8 @@ At this point, don't worry about styling nor tests, you will be focused on those
 
 ## Restrictions
 - Don’t include extra dependencies (lodash, ramda).
-- Don’t include css loaders or css libraries (bootstrap, bulma, semantic).
 - Don’t use inline styles.
-- Minimize the use of React Components internal state.
-- Application must preserve the state for favorites. This means that if your refresh the page, it must display the ones that you previously selected.
+- Application must preserve the state for the video details. This means that if your refresh the page, it must display the video that you previously selected and its details.
 - Constantly commit your code.
 
 ## Code Review
@@ -53,9 +54,10 @@ At this point, don't worry about styling nor tests, you will be focused on those
 ## TL;DR
 1. Use Youtube API
 2. Home List View
-  - Trending API
-  - Search API
-3. Favorite List View
-  - Context State List
+  - Youtube API
+3. Video details View
+  - Context
+4. Favorite List View
+  - Youtube API
 5. Unit Testing
   - Coverage 70%
