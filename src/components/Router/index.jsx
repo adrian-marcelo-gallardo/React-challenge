@@ -12,11 +12,9 @@ const Favorites = () => (
 const ProtectedRoute = ({ ...props }) => {
   const [{ user }] = useGeneralContext();
 
-  if (!user) {
-    return <div>nope</div>;
-  }
-
-  return <Route {...props} />;
+  return user ? (
+    <Route {...props} />
+  ) : null;
 };
 
 const Router = () => (

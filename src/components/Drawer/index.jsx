@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import { useGeneralContext } from '../../context/General';
 import useStyles from './styles';
 
 const Menu = (props) => {
@@ -16,6 +17,7 @@ const Menu = (props) => {
   } = props;
 
   const { push } = useHistory();
+  const [{ user }] = useGeneralContext();
 
   const classes = useStyles();
 
@@ -35,10 +37,14 @@ const Menu = (props) => {
             <ListItemText primary="Home" />
           </ListItem>
           <Divider />
-          <ListItem button onClick={() => push('/favorites')}>
-            <ListItemText primary="Favorites" />
-          </ListItem>
-          <Divider />
+          {user && (
+            <>
+              <ListItem button onClick={() => push('/favorites')}>
+                <ListItemText primary="Favorites" />
+              </ListItem>
+              <Divider />
+            </>
+          )}
         </List>
       </div>
     </Drawer>

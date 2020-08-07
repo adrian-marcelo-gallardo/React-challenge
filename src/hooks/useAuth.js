@@ -32,24 +32,23 @@ function useAuth() {
   const [authInstance, setAuthInstance] = useState();
   const [state, dispatch] = useReducer(reducer, initialState);
   const gapi = useGapi();
+
   useEffect(() => {
     if (gapi) {
       const auth = new GoogleAuth(gapi);
-      const currentUser = auth.getCurrentUser();
-      // console.log(currentUser);
+      const currentUser = auth?.getCurrentUser()?.getBasicProfile();
       if (currentUser) {
         dispatch({ type: 'login_successful', value: currentUser });
-        // do something
+      } else {
+        dispatch({ type: 'not_logged_in' });
       }
       auth.onAuthChange((signStatus, user) => {
         if (signStatus) {
           // User is logged in
-          // console.log('LOGGED IN with', user);
           dispatch({ type: 'login_successful', value: user });
         } else {
-          // console.log('LOGGED OUT');
-          dispatch({ type: 'not_logged_in' });
           // user is logged out
+          dispatch({ type: 'not_logged_in' });
         }
       });
       setAuthInstance(auth);

@@ -24,7 +24,7 @@ class GoogleAuth {
       }
 
       if (isSignedIn) {
-        const user = this.getCurrentUser();
+        const user = this.getCurrentUser().getBasicProfile();
         this.callback(isSignedIn, user);
       } else {
         this.callback(isSignedIn, null);

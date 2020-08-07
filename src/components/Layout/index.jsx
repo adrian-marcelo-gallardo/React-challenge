@@ -43,7 +43,7 @@ export default function Layout({ children }) {
         open={openDrawer}
         toggleDrawer={setOpenDrawer}
       />
-      {!loading && children}
+      {children}
     </div>
   );
 }
