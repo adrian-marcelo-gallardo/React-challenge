@@ -18,7 +18,7 @@ const Home = () => {
     const { videoId } = videoData;
     push(`/${videoId}`);
 
-    const action = setValues(videoData);
+    const action = setValues({ videoData });
     dispatch(action);
   }
 

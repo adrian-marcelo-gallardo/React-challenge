@@ -9,7 +9,9 @@ import useStyles from './styles';
 const Home = () => {
   const classes = useStyles();
 
-  const [{ videoId, title, description }] = useGeneralContext();
+  const [{ videoData }] = useGeneralContext();
+
+  const { videoId, title, description } = videoData;
 
   return (
     <div className={classes.root}>
