@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useGeneralContext } from '../context/General';
 
 export default () => {
   const [gapi, setGAPI] = useState(null);
-  const context = useGeneralContext();
-  const dispatch = context[1];
 
   useEffect(() => {
     async function initGoogle() {
@@ -20,7 +17,7 @@ export default () => {
     }
 
     window.gapi.load('client:auth2', initGoogle);
-  }, [dispatch]);
+  }, []);
 
   return gapi;
 };

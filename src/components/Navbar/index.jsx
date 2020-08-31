@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,23 +9,25 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import LoginPrompt from '../LoginPrompt/LoginPrompt';
-import { useGeneralContext } from '../../context/General';
-import { setValue } from '../../state/actions';
 
 import useStyles from './styles';
 import useAuth from '../../store/auth/useAuth';
+import useVideo from '../../store/video/useVideo';
 
 const Navbar = ({ toggleDrawer }) => {
   const classes = useStyles();
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-
   const { user, isLoggedIn, logout } = useAuth();
+  const { searchTerm, setSearchTerm, fetchVideos } = useVideo();
+  const { push } = useHistory();
+  const location = useLocation();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [loginDialogOpen, setLoginDialogOpen] = React.useState(false);
-  const [{ searchTerm }, dispatch] = useGeneralContext();
+
+  const open = Boolean(anchorEl);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,25 +39,31 @@ const Navbar = ({ toggleDrawer }) => {
 
   const doLogin = () => {
     setLoginDialogOpen(true);
-
     handleMenuItemClose();
   };
 
   const doLogout = () => {
     logout();
-
     handleMenuItemClose();
   };
 
-  const handleOnChange = (e) => {
-    const { value } = e.target;
-
-    const action = setValue({
-      key: 'searchTerm',
-      value,
-    });
-    dispatch(action);
+  const handleSearchTermChanged = (event) => {
+    setSearchTerm(event.target.value);
   };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      fetchVideos(searchTerm);
+
+      if (location.pathname !== '/') {
+        push('/');
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    fetchVideos(searchTerm);
+  }, []);
 
   return (
     <AppBar position="static">
@@ -80,7 +88,8 @@ const Navbar = ({ toggleDrawer }) => {
               input: classes.inputInput,
             }}
             inputProps={{ 'aria-label': 'search' }}
-            onChange={handleOnChange}
+            onChange={handleSearchTermChanged}
+            onKeyDown={handleKeyDown}
             value={searchTerm}
           />
         </div>

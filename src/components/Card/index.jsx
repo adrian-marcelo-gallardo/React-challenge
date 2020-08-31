@@ -13,7 +13,7 @@ export default function MediaCard(props) {
     title,
     description,
     publishTime,
-    videoId,
+    id,
     onClick,
   } = props;
 
@@ -25,7 +25,7 @@ export default function MediaCard(props) {
       title,
       description,
       publishTime,
-      videoId,
+      id,
     });
   }
 
@@ -58,6 +58,6 @@ MediaCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   publishTime: PropTypes.string.isRequired,
-  videoId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };

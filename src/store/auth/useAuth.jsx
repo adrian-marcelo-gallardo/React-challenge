@@ -10,7 +10,6 @@ export const AuthProvider = (props) => {
     ...initialState,
     user: localStorage.getItem(authStorageKey) ? JSON.parse(localStorage.getItem(authStorageKey)) : null,
   });
-  console.log(state.user);
   const value = {
     ...state,
     login: loginAction(dispatch),

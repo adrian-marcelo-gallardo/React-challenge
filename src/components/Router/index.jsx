@@ -3,16 +3,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Layout from '../Layout';
 import Video from '../Video';
 import Home from '../Home';
-import { useGeneralContext } from '../../context/General';
+import useAuth from '../../store/auth/useAuth';
 
 const Favorites = () => (
   <div>Favorites</div>
 );
 
 const ProtectedRoute = ({ ...props }) => {
-  const [{ user }] = useGeneralContext();
+  const { isLoggedIn } = useAuth();
 
-  return user ? (
+  return isLoggedIn ? (
     <Route {...props} />
   ) : null;
 };
