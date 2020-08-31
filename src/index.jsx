@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { AuthProvider } from './store/auth/useAuth';
-import { Provider as GeneralContext } from './context/General';
+import { VideoProvider } from './store/video/useVideo';
 import App from './App';
 
 ReactDOM.render((
   <AuthProvider>
-    <GeneralContext>
+    <VideoProvider>
       <App />
-    </GeneralContext>
+    </VideoProvider>
   </AuthProvider>
 ), document.getElementById('root'));
 
