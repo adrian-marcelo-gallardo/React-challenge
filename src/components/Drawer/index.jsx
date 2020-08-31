@@ -7,8 +7,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import { useGeneralContext } from '../../context/General';
 import useStyles from './styles';
+import useAuth from '../../store/auth/useAuth';
 
 const Menu = (props) => {
   const {
@@ -17,7 +17,7 @@ const Menu = (props) => {
   } = props;
 
   const { push } = useHistory();
-  const [{ user }] = useGeneralContext();
+  const { isLoggedIn } = useAuth();
 
   const classes = useStyles();
 
@@ -37,7 +37,7 @@ const Menu = (props) => {
             <ListItemText primary="Home" />
           </ListItem>
           <Divider />
-          {user && (
+          {isLoggedIn && (
             <>
               <ListItem button onClick={() => push('/favorites')}>
                 <ListItemText primary="Favorites" />

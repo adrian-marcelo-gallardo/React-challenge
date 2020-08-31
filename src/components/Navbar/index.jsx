@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,44 +10,42 @@ import SearchIcon from '@material-ui/icons/Search';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
+import LoginPrompt from '../LoginPrompt/LoginPrompt';
 import { useGeneralContext } from '../../context/General';
 import { setValue } from '../../state/actions';
 
 import useStyles from './styles';
+import useAuth from '../../store/auth/useAuth';
 
-const Navbar = (props) => {
-  const {
-    toggleDrawer,
-    isLoggedIn,
-    user,
-    onLogIn,
-    onLogOut,
-    loading,
-  } = props;
-
+const Navbar = ({ toggleDrawer }) => {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  const { user, isLoggedIn, logout } = useAuth();
+  const [loginDialogOpen, setLoginDialogOpen] = React.useState(false);
+  const [{ searchTerm }, dispatch] = useGeneralContext();
+
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  function handleClose() {
+  function handleMenuItemClose() {
     setAnchorEl(null);
   }
 
-  const handleSession = () => {
-    if (isLoggedIn) {
-      onLogOut();
-    } else {
-      onLogIn();
-    }
-    handleClose();
+  const doLogin = () => {
+    setLoginDialogOpen(true);
+
+    handleMenuItemClose();
   };
 
-  const [{ searchTerm }, dispatch] = useGeneralContext();
+  const doLogout = () => {
+    logout();
+
+    handleMenuItemClose();
+  };
 
   const handleOnChange = (e) => {
     const { value } = e.target;
@@ -97,20 +94,10 @@ const Navbar = (props) => {
               color="inherit"
               onClick={handleMenu}
             >
-              {loading ? (
-                <Loader
-                  type="Circles"
-                  width={20}
-                  height={20}
-                  color="white"
-                  visible
-                />
-              ) : (
-                <Avatar
-                  src={user?.getImageUrl()}
-                  alt="user"
-                />
-              )}
+              <Avatar
+                src={user?.avatarUrl}
+                alt="user"
+              />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -125,27 +112,24 @@ const Navbar = (props) => {
                 horizontal: 'right',
               }}
               open={open}
-              onClose={handleClose}
+              onClose={handleMenuItemClose}
             >
-              <MenuItem onClick={handleSession}>
-                {isLoggedIn ? 'Cerrar Sesion' : 'Iniciar sesion'}
-              </MenuItem>
+              {isLoggedIn ? (
+                <MenuItem onClick={doLogout}>Cerrar Sesion</MenuItem>
+              ) : (
+                <MenuItem onClick={doLogin}>Iniciar sesion</MenuItem>
+              )}
             </Menu>
           </div>
         </div>
       </Toolbar>
+      <LoginPrompt isOpen={loginDialogOpen} close={() => setLoginDialogOpen(false)} />
     </AppBar>
   );
 };
 
 Navbar.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
-  user: PropTypes.any,
-  loading: PropTypes.any.isRequired,
-  onLogIn: PropTypes.func.isRequired,
-  onLogOut: PropTypes.func.isRequired,
-
 };
 
 export default Navbar;
